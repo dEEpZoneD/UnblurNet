@@ -6,7 +6,7 @@ import requests
 from tqdm import tqdm
 import os
 import shutil
-from deblur_ae import pjt_dir
+from train import pjt_dir
 # data=tfds.load('tf_flowers')
 
 data_dir = os.path.join(pjt_dir, 'input/sharp')
