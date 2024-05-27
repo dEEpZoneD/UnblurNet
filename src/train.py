@@ -10,7 +10,6 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
 import time
-import albumentations
 import argparse
 from models import upsampleCNN
 
@@ -20,7 +19,7 @@ from torchvision.transforms import transforms
 from torchvision.utils import save_image
 from sklearn.model_selection import train_test_split
 
-from src.models import upsampleCNN
+from models import upsampleCNN
 
 file_dir = os.path.dirname(os.path.abspath(__file__))
 pjt_dir = os.path.dirname(file_dir)
