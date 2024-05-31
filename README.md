@@ -13,10 +13,10 @@ Removes diferent types and intensities of blurs from images
   `pip install -r requirements.txt`
 
 ## Get the [dataset](https://www.kaggle.com/kwentar/blur-dataset) from kaggle
-  After downloading the dataset set the project directory in such a way
+  After downloading the dataset setup the project directory in such a way
   ```
   UnblurNet
-  ├───input
+  ├───inputs
   │   ├───defocused_blurred
   │   ├───gaussian_blurred
   │   ├───motion_blurred
