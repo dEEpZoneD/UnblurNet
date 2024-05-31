@@ -21,8 +21,8 @@ from sklearn.model_selection import train_test_split
 
 from models import upsampleCNN
 
-file_dir = os.path.dirname(os.path.abspath(__file__))
-pjt_dir = os.path.dirname(file_dir)
+pjt_dir = os.path.dirname(os.path.dirname(__file__))
+file_dir = os.path.join(pjt_dir, 'src')
 
 # constructing the argument parser
 parser = argparse.ArgumentParser()
@@ -31,7 +31,7 @@ parser.add_argument('-e', '--epochs', type=int, default=100,
 args = vars(parser.parse_args())
 
 # helper functions
-image_dir = os.path.join(file_dir, '../outputs/saved_images')
+image_dir = os.path.join(pjt_dir, 'outputs/saved_images')
 os.makedirs(image_dir, exist_ok=True)  #creates new dir, doesnt do anything if already exists
     
 def save_decoded_image(img, name):
@@ -41,9 +41,9 @@ def save_decoded_image(img, name):
 device = 'cuda:0' if torch.cuda.is_available() else 'cpu'
 print(f"Device found: {device}")
 
-gauss_blur = os.listdir(os.path.join(file_dir, '../input/gaussian_blurred/'))
+gauss_blur = os.listdir(os.path.join(pjt_dir, 'inputs/gaussian_blurred'))
 gauss_blur.sort()
-sharp = os.listdir(os.path.join(file_dir, '../input/sharp'))
+sharp = os.listdir(os.path.join(pjt_dir, 'inputs/sharp'))
 sharp.sort()
 
 x_blur = []
@@ -79,13 +79,13 @@ class DeblurDataset(Dataset):
         return (len(self.X))
     
     def __getitem__(self, i):
-        blur_image = cv2.imread(os.path.join(pjt_dir, f"input\gaussian_blurred\{self.X[i]}"))
+        blur_image = cv2.imread(os.path.join(pjt_dir, f"inputs/gaussian_blurred/{self.X[i]}"))
         
         if self.transforms:
             blur_image = self.transforms(blur_image)
             
         if self.y is not None:
-            sharp_image = cv2.imread(os.path.join(pjt_dir, f"input\sharp\{self.y[i]}"))
+            sharp_image = cv2.imread(os.path.join(pjt_dir, f"inputs/sharp/{self.y[i]}"))
             if self.transforms:
                 sharp_image = self.transforms(sharp_image)
             sample = {'blur': blur_image, 'sharp': sharp_image}
