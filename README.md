@@ -1,5 +1,5 @@
 # UnblurNet
-Removes diferent types and intensities of blurs from images
+Removes different types and intensities of blurs from images
 
 ## Setup a virtual environment
 - Install python3-virtualenv pakage system-wide
@@ -26,7 +26,7 @@ Removes diferent types and intensities of blurs from images
   └───src
   ```
 
-## Testing the project
+## Testing the model
 - Currently the train.py script doesn't use the blurred images provided in the dataset.
 - You can create a new directory with gaussian blurring using the utils/add_gaussian_blur.py script
   `python3 utils/add_gaussian_blur.py`
